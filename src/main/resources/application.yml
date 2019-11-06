@@ -1,0 +1,88 @@
+
+
+
+# 指定Springboot启动端口号、uri字符utf-8 context-path
+server:
+  port: 8090
+  tomcat:
+    uri-encoding: utf-8
+  servlet:
+    context-path: /dalididilo
+
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  thymeleaf:
+    mode: HTML5
+    suffix: .html
+    prefix: classpath:/templates/
+
+# redis commandLine :
+# config set requirepass 123456
+# auth 123456
+# flushdb / flushall
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password: 123456
+  #mysql
+  datasource:
+    url: jdbc:mysql://localhost:3306/dalididilo?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 20160928
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #    Druid 数据库连接池
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:mysql://localhost:3306/dalididilo?useUnicode=true&characterEncoding=utf8
+      username: root
+      password: 20160928
+      driver-class-name: com.mysql.cj.jdbc.Driver
+#      连接池
+      initial-size: 10
+      max-active: 50
+      min-idle: 10
+      max-wait: 5000
+      pool-prepared-statements: true # 是否缓存preparedStatement，PSCache
+      max-pool-prepared-statement-per-connection-size: 20
+      validation-query: SELECT 1 FROM DUAL
+      validation-query-timeout: 20000
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000 #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      min-evictable-idle-time-millis: 30000 #一个连接在池中最小生存的时间，单位是毫秒
+# StatViewServlet配置。（因为暴露的监控信息比较敏感，支持密码加密和访问ip限定）
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        login-username: admin
+        login-password: admin
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
+
+
+
+# Mybatis dao.xml 文件路径
+mybatis:
+  mapper-locations: classpath:mapping/*/*Mapper.xml
+  type-aliases-package: com.dalididilo.movie.*
+
+# Logging日志输出配置包名DEBUG
+logging:
+  level:
+    com:
+      dalididilo:
+        movie:
+          mapper:
+            DEBUG

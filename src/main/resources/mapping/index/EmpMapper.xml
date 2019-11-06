@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.dalididilo.moviehome.index.dao.IndexDao">
+
+
+
+    <!--
+
+    private String empId;
+    private String lastName;
+    private String gender;
+    private String email;
+    private String deptName;
+
+    -->
+
+    <resultMap id="EmployeeMapper" type="com.dalididilo.moviehome.index.bean.Employee">
+        <id property="empId" column="emp_id"></id>
+        <result property="lastName" column="last_name"></result>
+        <result property="gender" column="gender"></result>
+        <result property="email" column="email"></result>
+        <result property="deptName" column="deptName"></result>
+    </resultMap>
+
+
+    <select id="getEmpById" resultMap="EmployeeMapper" parameterType="java.lang.String">
+
+
+        SELECT
+            employee.*,dept.dept_name deptName
+        FROM
+            employee INNER JOIN dept ON employee.dept_id = dept.dept_id
+        WHERE
+            emp_id = #{empId}
+
+    </select>
+
+
+</mapper>
