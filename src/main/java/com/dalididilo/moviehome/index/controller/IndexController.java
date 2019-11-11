@@ -4,6 +4,7 @@ package com.dalididilo.moviehome.index.controller;
 import com.dalididilo.moviehome.index.bean.ControlDevice;
 import com.dalididilo.moviehome.index.service.IndexService;
 import com.dalididilo.moviehome.utils.HttpTool;
+import com.dalididilo.moviehome.utils.ZookeeperProSync;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -53,9 +54,19 @@ public class IndexController {
         options.put("01","大离");
         options.put("02","弟弟咯");
         redisTemplate.opsForValue().set("map",options);
+
         return "index";
     }
 
+
+    @RequestMapping("/zookeeper")
+    public String zookeeper(){
+        Thread thread1 = new Thread(new ZookeeperProSync());
+        thread1.start();
+        Thread thread2 = new Thread(new ZookeeperProSync());
+        thread2.start();
+        return "index";
+    }
 
     @RequestMapping("/user/add")
     public String add(){
