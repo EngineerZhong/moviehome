@@ -17,7 +17,7 @@ public class ZookeeperLock {
     private ZkClient zkClient;
 
     public ZookeeperLock() {
-        zkClient = new ZkClient("192.168.1.185",3000,2000);
+        zkClient = new ZkClient("192.168.1.186:2182",3000,2000);
         // 会话超时时间3000，在会话关闭后，3s将删除其创建的临时节点。
     }
 
