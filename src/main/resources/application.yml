@@ -31,17 +31,17 @@ spring:
     password: 123456
   #mysql
   datasource:
-    url: jdbc:mysql://localhost:3306/dalididilo?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://192.168.123.83:8066/masterdb?useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&failOverReadOnly=false
     username: root
-    password: 20160928
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
     #    Druid 数据库连接池
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
-      url: jdbc:mysql://localhost:3306/dalididilo?useUnicode=true&characterEncoding=utf8
+      url: jdbc:mysql://192.168.123.83:8066/masterdb?useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&failOverReadOnly=false
       username: root
-      password: 20160928
-      driver-class-name: com.mysql.cj.jdbc.Driver
+      password: 123456
+      driver-class-name: com.mysql.jdbc.Driver
 #      连接池
       initial-size: 10
       max-active: 50
