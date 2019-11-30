@@ -1,0 +1,23 @@
+# 引擎数据解析模块服务 Zookeeper 节点注册配置文件。
+servers-config:
+  #服务器权重
+  weight: 25
+  #服务器ip地址
+  host: 192.168.1.155
+  #服务提供的端口号
+  port: 9308
+  #平滑轮询默认初始权重0（无需改动。）
+  currentWeight: 0
+  # 数据解析模块注册到zookeeper上的节点目录名称。
+  zookeeperPath: /DataAnalysis
+
+# Kafka服务器配置内容。
+kafka-servers-config:
+  bootstrapServers: kafka101
+  acks: all
+  retries: 0
+  batchSize: 16384
+  lingerMs: 1
+  bufferMemory: 33554432
+  KeySerializer: org.apache.kafka.common.serialization.StringSerializer
+  ValueSerializer: org.apache.kafka.common.serialization.StringSerializer

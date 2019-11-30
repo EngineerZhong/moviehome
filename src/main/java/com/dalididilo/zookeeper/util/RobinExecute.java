@@ -20,10 +20,9 @@ public class RobinExecute {
     public static void main(String[] args) {
 
         RobinExecute robinExecute = new RobinExecute();
-
-        /** ==================    TheadLocal   ========================**/
-        robinExecute.acquireWeightRoundRobinOfTheadLocal().selectServer();
-
+//
+//        /** ==================    TheadLocal   ========================**/
+//        robinExecute.acquireWeightRoundRobinOfTheadLocal().selectServer();
         /** ==================    ReentrantLock 可重入锁   ========================**/
         robinExecute.getLock().lock();  //notice: 注意此锁会无休止的等待资源，如果使用此锁，无比保证资源能够被拿到
         try {
@@ -59,19 +58,19 @@ public class RobinExecute {
      * notice: 只有在使用池化技术的情况才建议使用此方式，否则达不到效果，还会造成内存泄漏
      * @return
      */
-    public SmoothPollingAlgorithm acquireWeightRoundRobinOfTheadLocal() {
-        return Optional.ofNullable(weightRoundRobinTl.get())
-                .orElseGet(() -> {
-                    SmoothPollingAlgorithm weightRoundRobin = new SmoothPollingAlgorithm();
-                    List<ServerSmoothPollingBean> servers = new ArrayList<>();
-                    servers.add(new ServerSmoothPollingBean("191", "997",1, 0));
-                    servers.add(new ServerSmoothPollingBean("192", "998",2, 0));
-                    servers.add(new ServerSmoothPollingBean("194", "999",4, 0));
-                    weightRoundRobin.initServers(servers);
-                    weightRoundRobinTl.set(weightRoundRobin);
-                    return weightRoundRobin;
-                });
-    }
+//    public SmoothPollingAlgorithm acquireWeightRoundRobinOfTheadLocal() {
+//        return Optional.ofNullable(weightRoundRobinTl.get())
+//                .orElseGet(() -> {
+//                    SmoothPollingAlgorithm weightRoundRobin = new SmoothPollingAlgorithm();
+//                    List<ServerSmoothPollingBean> servers = new ArrayList<>();
+//                    servers.add(new ServerSmoothPollingBean("191", "997",1, 0));
+//                    servers.add(new ServerSmoothPollingBean("192", "998",2, 0));
+//                    servers.add(new ServerSmoothPollingBean("194", "999",4, 0));
+//                    weightRoundRobin.initServers(servers);
+//                    weightRoundRobinTl.set(weightRoundRobin);
+//                    return weightRoundRobin;
+//                });
+//    }
 
     public ReentrantLock getLock() {
         return lock;

@@ -10,6 +10,8 @@ server:
     context-path: /dalididilo
 
 spring:
+  profiles:
+    include: server
   http:
     encoding:
       charset: UTF-8
