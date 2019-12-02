@@ -25,7 +25,7 @@ public class Producer {
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
-        KafkaProducer<String,String> producer = new KafkaProducer<String, String>(props);
+        KafkaProducer<String,String> producer = new KafkaProducer<>(props);
         for (int i = 0; i < 9; i++){
             producer.send(new ProducerRecord<>("zwb_dev", "value--" + i)
                     , (metadata, exception) -> {

@@ -10,6 +10,9 @@ servers-config:
   currentWeight: 0
   # 数据解析模块注册到zookeeper上的节点目录名称。
   zookeeperPath: /DataAnalysis
+spring:
+  profiles:
+    include: server
 
 # Kafka服务器配置内容。
 kafka-servers-config:
@@ -21,3 +24,28 @@ kafka-servers-config:
   bufferMemory: 33554432
   KeySerializer: org.apache.kafka.common.serialization.StringSerializer
   ValueSerializer: org.apache.kafka.common.serialization.StringSerializer
+
+
+
+
+
+
+
+
+
+
+  # Kafka获取消费者的配置内容
+  kafka-consumer-config:
+    bootstrapServers: 192.168.1.155:9091,192.168.1.155:9092,192.168.1.155:9093
+    groupId: test-1
+    enableAutoCommit: true
+    AutoCommitIntervalMs: 1000
+    KeyDeSerializer: org.apache.kafka.common.serialization.StringDeserializer
+    ValueDeSerializer: org.apache.kafka.common.serialization.StringDeserializer
+
+  # Kafka服务配置内容
+  kafka-server-config:
+    bootstrapServers: 192.168.1.155:9091,192.168.1.155:9092,192.168.1.155:9093
+    clientId: DataAnalysis
+    metaMaxAgeMs: 300000
+    retries: 3
